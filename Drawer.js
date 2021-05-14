@@ -20,6 +20,11 @@ import Icon5 from 'react-native-vector-icons/EvilIcons';
 import Icon6 from 'react-native-vector-icons/Ionicons';
 
 import Animated from 'react-native-reanimated';
+import Book from './components/Book';
+import Login from './components/Login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useEffect} from 'react';
+import CheckedOut from './components/CheckedOut';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -79,16 +84,57 @@ const Screens = ({navigation, style}) => {
             </Button>
           ),
         }}>
-        <Stack.Screen name="Home" component={Home}></Stack.Screen>
-        <Stack.Screen name="Library" component={Library}></Stack.Screen>
-        <Stack.Screen name="My Books" component={MyBooks}></Stack.Screen>
-        <Stack.Screen name="About Us" component={About}></Stack.Screen>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          test="test"
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="Library"
+          component={Library}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="My Books"
+          component={MyBooks}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="About Us"
+          component={About}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="Book"
+          component={Book}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="CheckedOut"
+          component={CheckedOut}
+          {...navigation}></Stack.Screen>
       </Stack.Navigator>
     </Animated.View>
   );
 };
 
 const DrawerContent = (props) => {
+  const [label, setLabel] = React.useState('');
+  const loginAsync = async () => {
+    const tokenAsync = await AsyncStorage.getItem('token');
+    if (tokenAsync === undefined || tokenAsync === null || tokenAsync === '') {
+      setLabel('Login');
+    } else {
+      setLabel('Logout');
+    }
+  };
+  useEffect(() => {
+    loginAsync();
+    return () => {
+      console.log(null);
+    };
+  });
+
   return (
     <DrawerContentScrollView {...props}>
       <Block>
@@ -136,8 +182,13 @@ const DrawerContent = (props) => {
 
       <Block flex={false}>
         <DrawerItem
-          label="Login"
+          label={label}
           labelStyle={{marginLeft: -16}}
+          onPress={() =>
+            props.navigation.navigate('Login', {
+              loggedOut: label,
+            })
+          }
           icon={() => <Icon3 name="login" color="black" size={16} />}
         />
       </Block>
@@ -157,7 +208,6 @@ export default () => {
   });
 
   const animatedStyle = {borderRadius, transform: [{scale}]};
-
   return (
     <Drawer.Navigator
       initialRouteName="Home"

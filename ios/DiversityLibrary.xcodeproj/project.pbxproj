@@ -18,8 +18,8 @@
 		6B8C73AC0EEC47E3993B8209 /* libPods-DiversityLibrary-DiversityLibraryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3323265B41B829343E9106E6 /* libPods-DiversityLibrary-DiversityLibraryTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A137A785A63557125772185E /* libPods-DiversityLibrary-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B495EC06DE9EA55A9DC1596 /* libPods-DiversityLibrary-tvOS.a */; };
-		AE15B7ADC49D456E2862BBAB /* libPods-DiversityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BABF980C13C2855C8A4B7D50 /* libPods-DiversityLibrary.a */; };
 		E935CA938D1DC337B37D8009 /* libPods-DiversityLibrary-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F5FC3F7D2525B008771D93 /* libPods-DiversityLibrary-tvOSTests.a */; };
+		F288B49CF6BD423E28546C38 /* libPods-DiversityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BABF980C13C2855C8A4B7D50 /* libPods-DiversityLibrary.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "DiversityLibrary-tvOS";
+		};
+		E921804926178D6C009C35FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E921804226178D6C009C35FE /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3893A2F023C50AFE009200E3;
+			remoteInfo = "RNCAsyncStorage-macOS";
+		};
+		E96144BA261507430098FD7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E96144B3261507430098FD7F /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3893A2F023C50AFE009200E3;
+			remoteInfo = "RNCAsyncStorage-macOS";
+		};
+		E9A82AD1262B2F9C000F232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E921804226178D6C009C35FE /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCAsyncStorage;
+		};
+		E9A82AD5262B2F9C000F232B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E96144B3261507430098FD7F /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCAsyncStorage;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -79,6 +107,7 @@
 		CC3CF0D59D7CFCE6C7AE8D01 /* Pods-DiversityLibrary-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiversityLibrary-tvOS.release.xcconfig"; path = "Target Support Files/Pods-DiversityLibrary-tvOS/Pods-DiversityLibrary-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		D067368CFAF94421BD9832F8 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D5A6CD86BEA542A8BC8F5ACE /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		E921804226178D6C009C35FE /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-async-storage/async-storage/macos/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		E942D09925D1988700387044 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		E942D09A25D1988700387044 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		E942D09B25D1988700387044 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
@@ -95,6 +124,7 @@
 		E942D0A625D1988800387044 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		E942D0A725D1988800387044 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		E942D0A825D1988800387044 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		E96144B3261507430098FD7F /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-async-storage/async-storage/macos/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F4CAB5AD8C1049318D0CD252 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -114,7 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE15B7ADC49D456E2862BBAB /* libPods-DiversityLibrary.a in Frameworks */,
+				F288B49CF6BD423E28546C38 /* libPods-DiversityLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +284,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E921804326178D6C009C35FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9A82AD2262B2F9C000F232B /* libRNCAsyncStorage.a */,
+				E921804A26178D6C009C35FE /* libRNCAsyncStorage-macOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E942D09425D197D700387044 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +314,15 @@
 				E942D0A025D1988700387044 /* Zocial.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		E96144B4261507430098FD7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9A82AD6262B2F9C000F232B /* libRNCAsyncStorage.a */,
+				E96144BB261507430098FD7F /* libRNCAsyncStorage-macOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,7 +421,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = AWLYXW32XJ;
+						DevelopmentTeam = 2TR6ZGV2VJ;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -398,6 +446,16 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E921804326178D6C009C35FE /* Products */;
+					ProjectRef = E921804226178D6C009C35FE /* RNCAsyncStorage.xcodeproj */;
+				},
+				{
+					ProductGroup = E96144B4261507430098FD7F /* Products */;
+					ProjectRef = E96144B3261507430098FD7F /* RNCAsyncStorage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* DiversityLibrary */,
@@ -407,6 +465,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E921804A26178D6C009C35FE /* libRNCAsyncStorage-macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNCAsyncStorage-macOS.a";
+			remoteRef = E921804926178D6C009C35FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E96144BB261507430098FD7F /* libRNCAsyncStorage-macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNCAsyncStorage-macOS.a";
+			remoteRef = E96144BA261507430098FD7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E9A82AD2262B2F9C000F232B /* libRNCAsyncStorage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCAsyncStorage.a;
+			remoteRef = E9A82AD1262B2F9C000F232B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E9A82AD6262B2F9C000F232B /* libRNCAsyncStorage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCAsyncStorage.a;
+			remoteRef = E9A82AD5262B2F9C000F232B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -759,6 +848,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DiversityLibraryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -779,6 +869,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DiversityLibraryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -800,8 +891,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AWLYXW32XJ;
+				DEVELOPMENT_TEAM = 2TR6ZGV2VJ;
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DiversityLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -824,7 +916,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AWLYXW32XJ;
+				DEVELOPMENT_TEAM = 2TR6ZGV2VJ;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DiversityLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -852,6 +945,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "DiversityLibrary-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -880,6 +974,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "DiversityLibrary-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -907,6 +1002,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "DiversityLibrary-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -934,6 +1030,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "DiversityLibrary-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (

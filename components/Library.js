@@ -106,7 +106,7 @@ class Library extends Component {
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={{justifyContent: 'center'}}>
-          <Text style={styles.heading}>Black History</Text>
+          <Text style={styles.heading}>Most Popular</Text>
           <Text></Text>
           <Carousel
             layout={'default'}
@@ -121,7 +121,7 @@ class Library extends Component {
           <Text></Text>
           <Text></Text>
 
-          <Text style={styles.heading}>Hispanic Literature</Text>
+          <Text style={styles.heading}>Fiction</Text>
           <Text></Text>
           <Carousel
             layout={'default'}
@@ -136,7 +136,7 @@ class Library extends Component {
           <Text></Text>
           <Text></Text>
 
-          <Text style={styles.heading}>Indian Myths</Text>
+          <Text style={styles.heading}>Non Fiction</Text>
           <Text></Text>
           <Carousel
             layout={'default'}
@@ -151,7 +151,7 @@ class Library extends Component {
           <Text></Text>
           <Text></Text>
 
-          <Text style={styles.heading}>Chinese Culture</Text>
+          <Text style={styles.heading}>All Books</Text>
           <Text></Text>
           <Carousel
             layout={'default'}

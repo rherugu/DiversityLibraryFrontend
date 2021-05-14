@@ -106,7 +106,7 @@ class MyBooks extends Component {
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={{justifyContent: 'center'}}>
-          <Text style={styles.heading}>Book's I've haven't returned</Text>
+          <Text style={styles.heading}>Checked Out Books</Text>
           <Text></Text>
           <Carousel
             layout={'default'}
