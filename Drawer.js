@@ -25,6 +25,9 @@ import Login from './components/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
 import CheckedOut from './components/CheckedOut';
+import Register from './components/Register';
+import axios from 'axios';
+import Search from './components/Search';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -32,6 +35,7 @@ const Stack = createStackNavigator();
 const Screens = ({navigation, style}) => {
   const [search, setSearch] = React.useState(false);
   const [searchIcon, setSearchIcon] = React.useState('search');
+  const [searchVal, setSearchVal] = React.useState('');
   return (
     <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
       <Stack.Navigator
@@ -76,6 +80,27 @@ const Screens = ({navigation, style}) => {
                       marginHorizontal: 15,
                       flex: 2,
                     }}
+                    onChangeText={(e) => {
+                      setSearchVal(e);
+                    }}
+                    onSubmitEditing={() => {
+                      axios
+                        .post('http://localhost:3000/books/search', {
+                          query: searchVal,
+                        })
+                        .then((res) => {
+                          navigation.navigate('Search', {
+                            book: res.data.results.map((obj) => obj),
+                          });
+                          console.log(res.data.results.map((obj) => obj));
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                          alert(
+                            'Something went wrong. Are you connected to the internet?',
+                          );
+                        });
+                    }}
                     maxLength={100}
                     placeholder="Search Query"></TextInput>
                   <Icon5 name="close" size={24} />
@@ -112,6 +137,14 @@ const Screens = ({navigation, style}) => {
         <Stack.Screen
           name="CheckedOut"
           component={CheckedOut}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          {...navigation}></Stack.Screen>
+        <Stack.Screen
+          name="Search"
+          component={Search}
           {...navigation}></Stack.Screen>
       </Stack.Navigator>
     </Animated.View>
@@ -160,7 +193,7 @@ const DrawerContent = (props) => {
           onPress={() => props.navigation.navigate('Home')}
           icon={() => <Icon name="home" size={16} />}
         />
-        <DrawerItem
+        {/* <DrawerItem
           label="Library"
           labelStyle={{marginLeft: -16}}
           onPress={() => props.navigation.navigate('Library')}
@@ -171,7 +204,7 @@ const DrawerContent = (props) => {
           labelStyle={{marginLeft: -16}}
           onPress={() => props.navigation.navigate('My Books')}
           icon={() => <Icon name="book" size={16} />}
-        />
+        /> */}
         <DrawerItem
           label="About Us"
           labelStyle={{marginLeft: -16}}

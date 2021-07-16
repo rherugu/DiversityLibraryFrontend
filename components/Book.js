@@ -15,11 +15,28 @@ import axios from 'axios';
 
 class Book extends Component {
   componentDidMount() {
+    console.log(this.props.route.params.checkedOut);
     if (this.props.route.params.checkedOut === true) {
       alert('This book is not available. It has been checked out already.');
+    } else {
+      axios
+        .get(`http://localhost:3000/books/id/${this.props.route.params.id}`)
+        .then((res) => {
+          console.log('dsaadsdsa', res.data);
+          if (res.data.checkedOut) {
+            alert(
+              'This book is not available. It has been checked out already!',
+            );
+          }
+        })
+        .catch((err) => {
+          alert('Error, do you have an internet connection?');
+          console.log(err);
+        });
     }
   }
   onPress = async () => {
+    var checkedOutBook = false;
     const tokenAsync = await AsyncStorage.getItem('token');
     console.log(tokenAsync, 'ffdsffsd');
     try {
@@ -29,37 +46,81 @@ class Book extends Component {
         tokenAsync === ''
       ) {
         this.props.navigation.navigate('Login', {bookLogin: true});
+      } else {
+        if (this.props.route.params.checkedOut === true) {
+          alert('This book is not available. It has been checked out already.');
+
+          checkedOutBook = true;
+
+          this.props.navigation.navigate('Home');
+        } else if (this.props.route.params.checkedOut === false) {
+          await axios
+            .get(`http://localhost:3000/books/id/${this.props.route.params.id}`)
+            .then((res) => {
+              if (res.data.checkedOut) {
+                alert(
+                  'This book is not available. It has been checked out already!',
+                );
+                checkedOutBook = true;
+                this.props.navigation.navigate('Home');
+              }
+            })
+            .catch((err) => {
+              alert('Error, do you have an internet connection?');
+              console.log(err);
+            });
+        }
+        if (checkedOutBook === false) {
+          const userId = await AsyncStorage.getItem('userId');
+          var quota = false;
+          await axios
+            .get(`http://localhost:3000/users/userid/${userId}`)
+            .then((res) => {
+              if (Number(res.data.checkedOutBooks.length) > 5) {
+                quota = true;
+              }
+            })
+            .catch((err) => {
+              alert('Error, do you have an internet connection?');
+              console.log(err);
+            });
+          if (quota === false) {
+            axios
+              .patch(
+                `http://localhost:3000/books/id/${this.props.route.params.id}`,
+                {
+                  checkedOut: true,
+                },
+              )
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => {
+                console.log(err);
+                alert('Something went wrong. Please try again.');
+              });
+            axios
+              .patch(`http://localhost:3000/users/${userId}`, {
+                checkedOutBooks: this.props.route.params.id,
+              })
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => {
+                console.log(err);
+                alert('Something went wrong. Please try again.');
+              });
+            alert('Success! Book has been checked out.');
+            this.props.navigation.navigate('CheckedOut');
+          } else if (quota) {
+            alert(
+              'Sorry, you have already reached a maximum quota of checked out books.',
+            );
+            this.props.navigation.navigate('Home');
+          }
+        }
       }
     } catch (error) {}
-    if (this.props.route.params.checkedOut === true) {
-      alert('This book is not available. It has been checked out already.');
-    } else {
-      axios
-        .patch(`http://localhost:3000/books/${this.props.route.params.id}`, {
-          checkedOut: true,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert('Something went wrong. Please try again.');
-        });
-      const userId = await AsyncStorage.getItem('userId');
-      axios
-        .patch(`http://localhost:3000/users/${userId}`, {
-          checkedOutBooks: this.props.route.params.id,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert('Something went wrong. Please try again.');
-        });
-      alert('Success! Book has been checked out.');
-      this.props.navigation.navigate('CheckedOut');
-    }
   };
   render() {
     return (

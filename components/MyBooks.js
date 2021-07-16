@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 import React, {Component} from 'react';
 import {
   SafeAreaView,
@@ -8,6 +10,7 @@ import {
   StatusBar,
   TouchableOpacity,
   LayoutAnimation,
+  Image,
   NativeModules,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
@@ -21,86 +24,87 @@ class MyBooks extends Component {
     super(props);
     this.state = {
       activeIndex: 0,
-      carouselItems: [
-        {
-          title: 'Item 1',
-          text: 'Text 1',
-        },
-        {
-          title: 'Item 2',
-          text: 'Text 2',
-        },
-        {
-          title: 'Item 3',
-          text: 'Text 3',
-        },
-        {
-          title: 'Item 4',
-          text: 'Text 4',
-        },
-        {
-          title: 'Item 5',
-          text: 'Text 5',
-        },
-        {
-          title: 'Item 1',
-          text: 'Text 1',
-        },
-        {
-          title: 'Item 2',
-          text: 'Text 2',
-        },
-        {
-          title: 'Item 3',
-          text: 'Text 3',
-        },
-        {
-          title: 'Item 4',
-          text: 'Text 4',
-        },
-        {
-          title: 'Item 5',
-          text: 'Text 5',
-        },
-      ],
+      books: [],
       lineDisplay: 'flex',
       lineDisplay2: 'none',
     };
   }
-  _renderItem({item, index}) {
-    return (
-      <View
-        style={{
-          backgroundColor: 'black',
-          borderRadius: 5,
-          height: 250,
-          padding: 50,
-          marginLeft: 25,
-          marginRight: 25,
-          marginBottom: -50,
-        }}>
-        <Text style={{fontSize: 30, color: 'white'}}>{item.title}</Text>
-        <Text style={{color: 'white'}}>{item.text}</Text>
-      </View>
-    );
+
+  async componentDidMount() {
+    const userId = await AsyncStorage.getItem('userId');
+    console.log(userId);
+    if (userId === null || undefined) {
+      alert('Please login to view books.');
+      this.props.navigation.navigate('Login');
+    } else {
+      await axios
+        .get('http://localhost:3000/users/userid/' + userId)
+        .then((res) => {
+          this.setState({
+            books: res.data.checkedOutBooks,
+          });
+          console.log(this.state.books);
+          if (
+            res.data.checkedOutBooks === [] ||
+            null ||
+            undefined ||
+            res.data.checkedOutBooks.length === 0
+          ) {
+            alert("Oops, it looks like you don't have any books here.");
+            this.props.navigation.navigate('Home');
+          }
+        })
+
+        .catch((err) => {
+          console.log(err);
+          alert('Something went wrong. :(');
+        });
+      for (var i = 0; i < this.state.books.length; i++) {
+        axios
+          .get('http://localhost:3000/books/id/' + this.state.books[i])
+          .then((res) => {
+            console.log(res.data);
+            let markers = [...this.state.books];
+            markers[i] = {...markers[i], key: res.data};
+            this.setState({markers});
+          })
+          .catch((err) => {
+            console.log(err);
+            alert('Something went wrong.');
+          });
+      }
+      console.log('dd', this.state.books);
+    }
   }
+
   _renderItem2({item, index}) {
     return (
-      <View
-        style={{
-          backgroundColor: 'black',
-          borderRadius: 5,
-          height: 160,
-          padding: 50,
-          marginLeft: 0,
-          marginRight: 0,
-        }}></View>
+      <TouchableOpacity
+        onPress={() => {
+          this.props.navigation.navigate('Book', {
+            image: item.cover,
+            title: item.title,
+            author: item.author,
+            id: item._id,
+            checkedOut: item.checkedOut,
+          });
+        }}>
+        <Image
+          source={{uri: item.cover}}
+          style={{
+            borderRadius: 5,
+            height: 150,
+            padding: 50,
+            marginLeft: 0,
+            marginRight: 0,
+          }}></Image>
+      </TouchableOpacity>
     );
   }
   render() {
+    var return1 = false;
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
-        {/* <Header title="My Books" navigation={this.props.navigation}></Header> */}
         <Text></Text>
         <Text></Text>
         <ScrollView
@@ -108,35 +112,74 @@ class MyBooks extends Component {
           contentContainerStyle={{justifyContent: 'center'}}>
           <Text style={styles.heading}>Checked Out Books</Text>
           <Text></Text>
-          <Carousel
-            layout={'default'}
-            ref={(ref) => (this.carousel = ref)}
-            data={this.state.carouselItems}
-            sliderWidth={375}
-            itemWidth={110}
-            renderItem={this._renderItem2}
-            firstItem={1}
-            onSnapToItem={(index) => this.setState({activeIndex: index})}
-          />
+          {/* {this.state.books.map((book) => {
+            axios
+              .get('http://localhost:3000/books/id/' + book)
+              .then((res) => {
+                console.log(res.data);
+                return1 = true;
+              })
+              .catch((err) => {
+                console.log(err);
+                alert('Something went wrong.');
+              });
+            return (
+              <View>
+                <Image
+                  source={{uri: res.data.cover}}
+                  height={150}
+                  width={110}></Image>
+                <Text>{res.data.title}</Text>
+              </View>
+            );
+          })} */}
+
+          <View>
+            <Carousel
+              layout={'default'}
+              ref={(ref) => (this.carousel = ref)}
+              data={this.state.books}
+              sliderWidth={375}
+              itemWidth={110}
+              renderItem={this._renderItem2}
+              firstItem={1}
+              onSnapToItem={(index) => this.setState({activeIndex: index})}
+            />
+            <Text></Text>
+            <Text></Text>
+
+            <Text style={styles.heading}>Returned Books</Text>
+            <Text></Text>
+            <Carousel
+              layout={'default'}
+              ref={(ref) => (this.carousel = ref)}
+              data={this.state.books}
+              sliderWidth={375}
+              itemWidth={110}
+              firstItem={1}
+              renderItem={this._renderItem2}
+              onSnapToItem={(index) => this.setState({activeIndex: index})}
+            />
+          </View>
           <Text></Text>
           <Text></Text>
 
-          <Text style={styles.heading}>Returned Books</Text>
+          {/* <Text style={styles.heading}>Books you've saved for later</Text>
           <Text></Text>
           <Carousel
             layout={'default'}
             ref={(ref) => (this.carousel = ref)}
             data={this.state.carouselItems}
             sliderWidth={375}
-            itemWidth={110}
             firstItem={1}
+            itemWidth={110}
             renderItem={this._renderItem2}
             onSnapToItem={(index) => this.setState({activeIndex: index})}
           />
           <Text></Text>
-          <Text></Text>
+          <Text></Text> */}
 
-          <Text style={styles.heading}>Books you've saved for later</Text>
+          {/* <Text style={styles.heading}>Favorite Books</Text>
           <Text></Text>
           <Carousel
             layout={'default'}
@@ -149,22 +192,7 @@ class MyBooks extends Component {
             onSnapToItem={(index) => this.setState({activeIndex: index})}
           />
           <Text></Text>
-          <Text></Text>
-
-          <Text style={styles.heading}>Favorite Books</Text>
-          <Text></Text>
-          <Carousel
-            layout={'default'}
-            ref={(ref) => (this.carousel = ref)}
-            data={this.state.carouselItems}
-            sliderWidth={375}
-            firstItem={1}
-            itemWidth={110}
-            renderItem={this._renderItem2}
-            onSnapToItem={(index) => this.setState({activeIndex: index})}
-          />
-          <Text></Text>
-          <Text></Text>
+          <Text></Text> */}
         </ScrollView>
       </View>
     );

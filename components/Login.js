@@ -121,6 +121,21 @@ class Login extends Component {
             }}>
             Login
           </Button>
+          <Text></Text>
+          <Button
+            icon="account"
+            mode="text"
+            onPress={() => {
+              this.props.navigation.navigate('Register');
+            }}
+            color="black"
+            contentStyle={{
+              height: 50,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            Sign up
+          </Button>
         </View>
       </ScrollView>
     );

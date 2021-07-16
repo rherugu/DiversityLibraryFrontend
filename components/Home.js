@@ -185,8 +185,13 @@ class Home extends Component {
               onSnapToItem={(index) => this.setState({activeIndex: index})}
             />
           </View>
-
-          <View style={styles.menu}>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          {/* <View style={styles.menu}>
             <TouchableOpacity
               style={styles.menutext}
               onPress={() => {
@@ -228,7 +233,7 @@ class Home extends Component {
                   display: this.state.lineDisplay2,
                 }}></View>
             </TouchableOpacity>
-          </View>
+          </View> */}
           <Carousel
             layout={'default'}
             ref={(ref) => (this.carousel = ref)}
