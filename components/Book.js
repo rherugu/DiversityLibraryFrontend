@@ -20,7 +20,9 @@ class Book extends Component {
       alert('This book is not available. It has been checked out already.');
     } else {
       axios
-        .get(`http://localhost:3000/books/id/${this.props.route.params.id}`)
+        .get(
+          `https://diversitylibrary.herokuapp.com/books/id/${this.props.route.params.id}`,
+        )
         .then((res) => {
           console.log('dsaadsdsa', res.data);
           if (res.data.checkedOut) {
@@ -55,7 +57,9 @@ class Book extends Component {
           this.props.navigation.navigate('Home');
         } else if (this.props.route.params.checkedOut === false) {
           await axios
-            .get(`http://localhost:3000/books/id/${this.props.route.params.id}`)
+            .get(
+              `https://diversitylibrary.herokuapp.com/books/id/${this.props.route.params.id}`,
+            )
             .then((res) => {
               if (res.data.checkedOut) {
                 alert(
@@ -74,7 +78,9 @@ class Book extends Component {
           const userId = await AsyncStorage.getItem('userId');
           var quota = false;
           await axios
-            .get(`http://localhost:3000/users/userid/${userId}`)
+            .get(
+              `https://diversitylibrary.herokuapp.com/users/userid/${userId}`,
+            )
             .then((res) => {
               if (Number(res.data.checkedOutBooks.length) > 5) {
                 quota = true;
@@ -87,7 +93,7 @@ class Book extends Component {
           if (quota === false) {
             axios
               .patch(
-                `http://localhost:3000/books/id/${this.props.route.params.id}`,
+                `https://diversitylibrary.herokuapp.com/books/id/${this.props.route.params.id}`,
                 {
                   checkedOut: true,
                 },
@@ -100,7 +106,7 @@ class Book extends Component {
                 alert('Something went wrong. Please try again.');
               });
             axios
-              .patch(`http://localhost:3000/users/${userId}`, {
+              .patch(`https://diversitylibrary.herokuapp.com/users/${userId}`, {
                 checkedOutBooks: this.props.route.params.id,
               })
               .then((res) => {

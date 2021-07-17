@@ -34,7 +34,7 @@ class Home extends Component {
   async componentDidMount() {
     var errorInternet = 0;
     axios
-      .get('http://localhost:3000/books/pagination', {
+      .get('https://diversitylibrary.herokuapp.com/books/pagination', {
         headers: {
           page: 0,
         },
@@ -49,7 +49,7 @@ class Home extends Component {
         console.error(err);
       });
     axios
-      .get('http://localhost:3000/books/pagination', {
+      .get('https://diversitylibrary.herokuapp.com/books/pagination', {
         headers: {
           page: 1,
         },
@@ -64,7 +64,7 @@ class Home extends Component {
         console.error(err);
       });
     axios
-      .get('http://localhost:3000/books/pagination', {
+      .get('https://diversitylibrary.herokuapp.com/books/pagination', {
         headers: {
           page: 2,
         },

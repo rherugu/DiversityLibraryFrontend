@@ -85,9 +85,12 @@ const Screens = ({navigation, style}) => {
                     }}
                     onSubmitEditing={() => {
                       axios
-                        .post('http://localhost:3000/books/search', {
-                          query: searchVal,
-                        })
+                        .post(
+                          'https://diversitylibrary.herokuapp.com/books/search',
+                          {
+                            query: searchVal,
+                          },
+                        )
                         .then((res) => {
                           navigation.navigate('Search', {
                             book: res.data.results.map((obj) => obj),

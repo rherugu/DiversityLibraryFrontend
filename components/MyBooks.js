@@ -38,7 +38,7 @@ class MyBooks extends Component {
       this.props.navigation.navigate('Login');
     } else {
       await axios
-        .get('http://localhost:3000/users/userid/' + userId)
+        .get('https://diversitylibrary.herokuapp.com/users/userid/' + userId)
         .then((res) => {
           this.setState({
             books: res.data.checkedOutBooks,
@@ -61,7 +61,10 @@ class MyBooks extends Component {
         });
       for (var i = 0; i < this.state.books.length; i++) {
         axios
-          .get('http://localhost:3000/books/id/' + this.state.books[i])
+          .get(
+            'https://diversitylibrary.herokuapp.com/books/id/' +
+              this.state.books[i],
+          )
           .then((res) => {
             console.log(res.data);
             let markers = [...this.state.books];
@@ -114,7 +117,7 @@ class MyBooks extends Component {
           <Text></Text>
           {/* {this.state.books.map((book) => {
             axios
-              .get('http://localhost:3000/books/id/' + book)
+              .get('https://diversitylibrary.herokuapp.com/books/id/' + book)
               .then((res) => {
                 console.log(res.data);
                 return1 = true;

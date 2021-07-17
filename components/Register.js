@@ -124,7 +124,7 @@ class Register extends Component {
               const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
               if (re.test(String(this.state.email).toLowerCase())) {
                 await axios
-                  .post('http://localhost:3000/users', {
+                  .post('https://diversitylibrary.herokuapp.com/users', {
                     fname: this.state.fname,
                     lname: this.state.lname,
                     email: this.state.email,
@@ -133,7 +133,7 @@ class Register extends Component {
                   .then(async (res) => {
                     console.log(res);
                     await axios
-                      .post('http://localhost:3000/login', {
+                      .post('https://diversitylibrary.herokuapp.com/login', {
                         email: this.state.email,
                         password: this.state.password,
                       })
