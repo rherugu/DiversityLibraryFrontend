@@ -25,7 +25,8 @@ class CheckedOut extends Component {
           <Text></Text>
           <Text></Text>
           <Text style={styles.text}>
-            Pick up the book at (Address here) before a ten day timespan.
+            Pick up the book at 34 Cannonade Drive Marlboro Nj before a five day
+            timespan.
           </Text>
           <Text></Text>
           <Text></Text>

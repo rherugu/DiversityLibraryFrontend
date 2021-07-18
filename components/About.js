@@ -55,25 +55,12 @@ class About extends Component {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              fontSize: 25,
             }}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet
-            deleniti in dolore? Sit officia voluptatum odio quaerat, quibusdam
-            temporibus eum blanditiis laudantium animi molestiae atque impedit
-            quo eligendi dolore nesciunt, dolorem deserunt modi deleniti
-            quisquam natus ducimus earum vitae. Quas laudantium distinctio
-            fugiat minima autem at eveniet et, assumenda perspiciatis aliquam
-            hic, rerum sunt nam aspernatur iste. Ex blanditiis exercitationem
-            possimus soluta dolores dicta beatae delectus natus praesentium qui
-            laborum, expedita repellendus fuga ducimus nemo maiores! Odit odio
-            vitae doloribus rem assumenda officiis numquam id ea voluptate
-            voluptatum illum unde, labore officia incidunt, sunt quasi tempora
-            consequatur ad sit! Voluptatum aliquid accusantium laboriosam dicta
-            eos hic praesentium cumque labore dolores numquam in quam dolore
-            laudantium obcaecati repellendus fugit saepe est blanditiis,
-            aspernatur corporis voluptatibus explicabo facilis. Enim harum illum
-            totam eligendi aut? Repudiandae pariatur eos veniam dicta animi ad
-            quaerat illum magnam itaque quasi? Nisi dolorum non laboriosam id
-            dignissimos.
+            Madison’s Magical Diversity Library has books that have characters
+            of different races and ethnicities, religions, and abilities.  You
+            will be able to come and pick them up and return to share with other
+            families.
           </Text>
         </ScrollView>
       </View>
